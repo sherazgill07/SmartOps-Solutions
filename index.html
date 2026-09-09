@@ -49,10 +49,10 @@
   }
   .nav{
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 0;
+    padding:10px 0;
   }
   .brand{display:flex; align-items:center; gap:12px;}
-  .brand img{height:60px; width:auto;}
+  .brand img{height:92px; width:auto;}
   .navlinks{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500;}
   .navlinks a{color:var(--navy); position:relative; padding:4px 0;}
   .navlinks a::after{
@@ -118,15 +118,18 @@
     position:relative;
     background:var(--navy);
     aspect-ratio:1/1;
-    display:flex; align-items:center; justify-content:center;
     overflow:hidden;
   }
-  .hero-graphic svg{width:78%; height:78%;}
-  .hero-graphic::before{
+  .hero-graphic img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .hero-graphic::after{
     content:"";
     position:absolute; inset:0;
     background:
-      linear-gradient(135deg, rgba(232,114,12,0.18), transparent 55%);
+      linear-gradient(165deg, rgba(11,37,69,0.82) 0%, rgba(11,37,69,0.35) 55%, rgba(232,114,12,0.22) 100%);
   }
 
   /* ---------- Stat strip ---------- */
@@ -179,6 +182,49 @@
   .service-row h3{font-size:20px; font-weight:600;}
   .service-row p{color:var(--slate); font-size:15px; max-width:56ch;}
 
+  /* ---------- Zoho One marquee ---------- */
+  .zoho-strip{
+    margin-top:56px;
+    border:1px solid var(--line);
+    background:var(--white);
+    padding:28px 0;
+  }
+  .zoho-strip-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:0 32px 20px;
+    flex-wrap:wrap; gap:8px;
+  }
+  .zoho-strip-head h3{font-size:16px; color:var(--navy);}
+  .zoho-strip-head span{font-size:13px; color:var(--slate);}
+  .marquee{
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    gap:14px;
+    animation:scrollLeft 28s linear infinite;
+  }
+  .marquee:hover .marquee-track{animation-play-state:paused;}
+  .zoho-chip{
+    display:flex; align-items:center; gap:10px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:10px 18px;
+    font-size:14px; font-weight:500; color:var(--navy);
+    white-space:nowrap;
+  }
+  .zoho-chip .dot{width:7px; height:7px; background:var(--orange); border-radius:50%; flex-shrink:0;}
+  @keyframes scrollLeft{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{animation:none;}
+  }
+
   /* ---------- Platforms ---------- */
   .platforms{
     background:var(--navy);
@@ -229,7 +275,7 @@
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
   }
   .footer-brand{display:flex; align-items:center; gap:10px; color:var(--navy); font-family:'Sora'; font-weight:600;}
-  .footer-brand img{height:42px;}
+  .footer-brand img{height:64px;}
   footer .foot-links{display:flex; gap:24px; font-size:14px; color:var(--slate);}
   footer .foot-links a:hover{color:var(--orange);}
 
@@ -257,6 +303,7 @@
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#platforms">Platforms</a>
+      <a href="reviews.html">Client Reviews</a>
       <a href="#contact">Contact</a>
     </nav>
     <a class="navcta" href="https://wa.me/923351469880" target="_blank" rel="noopener">Message on WhatsApp</a>
@@ -275,15 +322,7 @@
       </div>
     </div>
     <div class="hero-graphic">
-      <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="60" r="7" fill="#E8720C"/>
-        <circle cx="180" cy="60" r="7" fill="#FFFFFF"/>
-        <circle cx="60" cy="180" r="7" fill="#FFFFFF"/>
-        <circle cx="180" cy="180" r="7" fill="#E8720C"/>
-        <circle cx="120" cy="120" r="9" fill="#FFFFFF"/>
-        <path d="M60 60L120 120M180 60L120 120M60 180L120 120M180 180L120 120" stroke="#3D5578" stroke-width="2"/>
-        <path d="M60 60L180 60M180 60L180 180M180 180L60 180M60 180L60 60" stroke="#243B5C" stroke-width="1.5" stroke-dasharray="4 5"/>
-      </svg>
+      <img src="https://images.pexels.com/photos/2497641/pexels-photo-2497641.jpeg?auto=compress&w=1260&h=750&dpr=1" alt="Modern glass office building facade">
     </div>
   </div>
 </section>
@@ -335,6 +374,42 @@
       <div class="service-row">
         <h3>Ops consulting</h3>
         <p>A structured review of how your business runs today, with a prioritized plan for what to fix first and what to leave alone.</p>
+      </div>
+    </div>
+
+    <div class="zoho-strip">
+      <div class="zoho-strip-head">
+        <h3>Built around the Zoho One suite</h3>
+        <span>CRM, finance, HR, support & analytics — configured to work together</span>
+      </div>
+      <div class="marquee">
+        <div class="marquee-track" id="zohoTrack">
+          <div class="zoho-chip"><span class="dot"></span>Zoho CRM</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Books</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Desk</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Projects</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Analytics</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Campaigns</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Creator</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho People</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Recruit</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Sign</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Forms</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho WorkDrive</div>
+          <!-- duplicate for seamless loop -->
+          <div class="zoho-chip"><span class="dot"></span>Zoho CRM</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Books</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Desk</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Projects</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Analytics</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Campaigns</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Creator</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho People</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Recruit</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Sign</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho Forms</div>
+          <div class="zoho-chip"><span class="dot"></span>Zoho WorkDrive</div>
+        </div>
       </div>
     </div>
   </div>
@@ -398,6 +473,7 @@
       <img src="logo.png" alt="SmartOps Solutions">
     </div>
     <div class="foot-links">
+      <a href="reviews.html">Client Reviews</a>
       <a href="https://www.fiverr.com/s/d0pvw88" target="_blank" rel="noopener">Fiverr</a>
       <a href="https://www.upwork.com/freelancers/~01d1951cceccdfb022" target="_blank" rel="noopener">Upwork</a>
       <a href="mailto:ssherazgill1@gmail.com">Email</a>
