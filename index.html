@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartOps Solutions — Connecting People, Processes & Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;
+    --navy-deep:#081b34;
+    --orange:#E8720C;
+    --paper:#F4F5F7;
+    --ink:#1B2430;
+    --slate:#5B6472;
+    --line:#DCE0E6;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Sora', sans-serif;
+    color:var(--navy);
+    line-height:1.15;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  :focus-visible{outline:3px solid var(--orange); outline-offset:3px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,245,247,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{height:38px; width:auto;}
+  .navlinks{display:flex; align-items:center; gap:36px; font-size:15px; font-weight:500;}
+  .navlinks a{color:var(--navy); position:relative; padding:4px 0;}
+  .navlinks a::after{
+    content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--orange); transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .navcta{
+    background:var(--navy); color:var(--white); padding:10px 20px;
+    border-radius:2px; font-weight:600; font-size:14px;
+  }
+  .navcta:hover{background:var(--navy-deep);}
+  .navcta::after{display:none;}
+  .menu-btn{display:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:96px 0 88px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:64px;
+    align-items:center;
+  }
+  .kicker{
+    display:flex; align-items:center; gap:10px;
+    font-size:14px; color:var(--slate); margin-bottom:22px;
+  }
+  .kicker span{width:22px; height:2px; background:var(--orange); display:inline-block;}
+  .hero h1{
+    font-size:52px;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    max-width:11.5ch;
+  }
+  .hero p.lead{
+    margin-top:22px;
+    font-size:18px;
+    color:var(--slate);
+    max-width:46ch;
+  }
+  .hero-actions{
+    display:flex; gap:16px; margin-top:36px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px;
+    font-weight:600; font-size:15px;
+    border-radius:2px;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--orange); color:var(--white);}
+  .btn-primary:hover{background:#cf6608;}
+  .btn-secondary{border-color:var(--navy); color:var(--navy);}
+  .btn-secondary:hover{background:var(--navy); color:var(--white);}
+
+  .hero-graphic{
+    position:relative;
+    background:var(--navy);
+    aspect-ratio:1/1;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .hero-graphic svg{width:78%; height:78%;}
+  .hero-graphic::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(135deg, rgba(232,114,12,0.18), transparent 55%);
+  }
+
+  /* ---------- Stat strip ---------- */
+  .stats{
+    background:var(--navy);
+    padding:28px 0;
+  }
+  .stats .wrap{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+  }
+  .stat{color:var(--white); text-align:left;}
+  .stat b{
+    font-family:'Sora', sans-serif; font-size:26px; display:block; color:var(--white);
+  }
+  .stat span{font-size:13px; color:#B8C4D6;}
+
+  /* ---------- Section shared ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    max-width:640px; margin-bottom:56px;
+  }
+  .section-head h2{font-size:34px; margin-bottom:16px;}
+  .section-head p{color:var(--slate); font-size:16px;}
+
+  /* ---------- About ---------- */
+  .about{border-bottom:1px solid var(--line);}
+  .about .grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:start;
+  }
+  .about-note{
+    border-left:3px solid var(--orange);
+    padding-left:20px;
+  }
+  .about-note p{color:var(--slate); font-size:15px; margin-bottom:14px;}
+  .about-note strong{color:var(--navy);}
+  .about-copy p{color:var(--slate); margin-bottom:18px; font-size:16px;}
+  .about-copy p:last-child{margin-bottom:0;}
+
+  /* ---------- Services ---------- */
+  .services{border-bottom:1px solid var(--line);}
+  .service-list{border-top:1px solid var(--line);}
+  .service-row{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:40px;
+    padding:34px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .service-row h3{font-size:20px; font-weight:600;}
+  .service-row p{color:var(--slate); font-size:15px; max-width:56ch;}
+
+  /* ---------- Platforms ---------- */
+  .platforms{
+    background:var(--navy);
+  }
+  .platforms .section-head h2, .platforms .section-head p{color:var(--white);}
+  .platforms .section-head p{color:#B8C4D6;}
+  .platform-cards{
+    display:grid; grid-template-columns:1fr 1fr; gap:24px;
+  }
+  .p-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.14);
+    padding:32px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .p-card h3{color:var(--white); font-size:20px;}
+  .p-card p{color:#B8C4D6; font-size:14px; flex-grow:1;}
+  .p-card a.btn{align-self:flex-start;}
+  .p-badge{
+    width:44px; height:44px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--orange); color:var(--white);
+    font-family:'Sora'; font-weight:700; font-size:15px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact .grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:48px;
+  }
+  .contact-item{
+    display:flex; gap:18px; padding:24px 0; border-bottom:1px solid var(--line);
+  }
+  .contact-icon{
+    width:44px; height:44px; flex-shrink:0;
+    background:var(--paper); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .contact-item h3{font-size:16px; margin-bottom:4px;}
+  .contact-item p{color:var(--slate); font-size:15px;}
+  .contact-item a{color:var(--orange); font-weight:600;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-brand{display:flex; align-items:center; gap:10px; color:var(--navy); font-family:'Sora'; font-weight:600;}
+  .footer-brand img{height:24px;}
+  footer .foot-links{display:flex; gap:24px; font-size:14px; color:var(--slate);}
+  footer .foot-links a:hover{color:var(--orange);}
+
+  @media (max-width: 860px){
+    .navlinks{display:none;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-graphic{order:-1; aspect-ratio:16/9;}
+    .hero h1{font-size:38px;}
+    .about .grid{grid-template-columns:1fr;}
+    .service-row{grid-template-columns:1fr; gap:10px;}
+    .platform-cards{grid-template-columns:1fr;}
+    .contact .grid{grid-template-columns:1fr;}
+    .stats .wrap{gap:28px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <img src="logo.png" alt="SmartOps Solutions">
+    </div>
+    <nav class="navlinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="navcta" href="https://wa.me/923351469880" target="_blank" rel="noopener">Message on WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="kicker"><span></span> Business Operations & Systems Consulting</div>
+      <h1>Connecting people, processes &amp; technology.</h1>
+      <p class="lead">SmartOps Solutions helps growing businesses untangle their operations — automating workflows, configuring the tools they already pay for, and building systems that actually get used.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://wa.me/923351469880" target="_blank" rel="noopener">Start a conversation</a>
+        <a class="btn btn-secondary" href="#services">See what I do</a>
+      </div>
+    </div>
+    <div class="hero-graphic">
+      <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="7" fill="#E8720C"/>
+        <circle cx="180" cy="60" r="7" fill="#FFFFFF"/>
+        <circle cx="60" cy="180" r="7" fill="#FFFFFF"/>
+        <circle cx="180" cy="180" r="7" fill="#E8720C"/>
+        <circle cx="120" cy="120" r="9" fill="#FFFFFF"/>
+        <path d="M60 60L120 120M180 60L120 120M60 180L120 120M180 180L120 120" stroke="#3D5578" stroke-width="2"/>
+        <path d="M60 60L180 60M180 60L180 180M180 180L60 180M60 180L60 60" stroke="#243B5C" stroke-width="1.5" stroke-dasharray="4 5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>People</b><span>Teams that need clarity, not more software</span></div>
+    <div class="stat"><b>Processes</b><span>Workflows mapped, automated, documented</span></div>
+    <div class="stat"><b>Technology</b><span>CRM, automation & ops tooling, configured right</span></div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="wrap grid">
+    <div class="about-note">
+      <p><strong>A new name for the same work.</strong> This studio operated as <strong>Zoho Solutions</strong> and has since become <strong>SmartOps Solutions</strong> — a name that reflects the full scope of the work: not just one platform, but the people, processes and technology around it.</p>
+    </div>
+    <div class="about-copy">
+      <p>Most operational problems aren't technology problems — they're clarity problems. A sales team re-entering the same data three times. A process that lives in one person's head. A CRM that was set up once and never revisited.</p>
+      <p>I work directly with founders and operations leads to map how work actually happens, then build the systems — CRM setup, workflow automation, dashboards, integrations — that make that work faster and less error-prone.</p>
+      <p>Every engagement ends with something your team can run without me: documented, owned, and built around how you actually operate.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Where I help</h2>
+      <p>Focused engagements, not open-ended retainers. Pick where the friction is worst.</p>
+    </div>
+    <div class="service-list">
+      <div class="service-row">
+        <h3>CRM setup &amp; cleanup</h3>
+        <p>Configuring Zoho and similar CRMs around your actual sales process — pipelines, fields, automations and reports that people will actually use.</p>
+      </div>
+      <div class="service-row">
+        <h3>Workflow automation</h3>
+        <p>Removing manual, repetitive steps between the tools you already run — quotes, approvals, follow-ups, notifications — so work moves without someone pushing it.</p>
+      </div>
+      <div class="service-row">
+        <h3>Process mapping &amp; documentation</h3>
+        <p>Turning tribal knowledge into clear, written processes your team can follow and your new hires can learn from on day one.</p>
+      </div>
+      <div class="service-row">
+        <h3>Systems integration</h3>
+        <p>Connecting CRM, finance, support and project tools so data moves between them automatically, instead of being copied by hand.</p>
+      </div>
+      <div class="service-row">
+        <h3>Ops consulting</h3>
+        <p>A structured review of how your business runs today, with a prioritized plan for what to fix first and what to leave alone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="platforms" id="platforms">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Work with me</h2>
+      <p>Reach out directly, or start on a freelance platform if you'd prefer contracts and payments handled there.</p>
+    </div>
+    <div class="platform-cards">
+      <div class="p-card">
+        <div class="p-badge">Fi</div>
+        <h3>Fiverr</h3>
+        <p>Browse packaged services and past client feedback, and place an order directly through Fiverr.</p>
+        <a class="btn btn-primary" href="https://www.fiverr.com/s/d0pvw88" target="_blank" rel="noopener">View Fiverr profile</a>
+      </div>
+      <div class="p-card">
+        <div class="p-badge">Up</div>
+        <h3>Upwork</h3>
+        <p>For longer or ongoing engagements, hourly or fixed-price contracts through Upwork.</p>
+        <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01d1951cceccdfb022" target="_blank" rel="noopener">View Upwork profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Get in touch</h2>
+      <p>Tell me what's slowing your team down. I'll reply with how I'd approach it.</p>
+    </div>
+    <div class="grid">
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 5.5L10 11L18 5.5" stroke="#0B2545" stroke-width="1.6"/><rect x="2" y="4" width="16" height="12" rx="1" stroke="#0B2545" stroke-width="1.6"/></svg>
+        </div>
+        <div>
+          <h3>Email</h3>
+          <p><a href="mailto:ssherazgill1@gmail.com">ssherazgill1@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 17L5.2 13.4C4.4 12.1 4 10.6 4 9C4 4.6 7.6 1 12 1S20 4.6 20 9 16.4 17 12 17C10.5 17 9.1 16.6 7.9 15.9L4 17Z" stroke="#0B2545" stroke-width="1.6" transform="translate(-2,0)"/></svg>
+        </div>
+        <div>
+          <h3>WhatsApp</h3>
+          <p><a href="https://wa.me/923351469880" target="_blank" rel="noopener">+92 335 1469880</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-brand">
+      <img src="logo.png" alt="SmartOps Solutions">
+    </div>
+    <div class="foot-links">
+      <a href="https://www.fiverr.com/s/d0pvw88" target="_blank" rel="noopener">Fiverr</a>
+      <a href="https://www.upwork.com/freelancers/~01d1951cceccdfb022" target="_blank" rel="noopener">Upwork</a>
+      <a href="mailto:ssherazgill1@gmail.com">Email</a>
+      <a href="https://wa.me/923351469880" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
